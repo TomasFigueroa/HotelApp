@@ -1,0 +1,22 @@
+﻿@page "/"
+
+<PageTitle>Bienvenido a la gestion del Hotel!</PageTitle>
+
+<h1>Por favor seleccione el modo al que quiere acceder</h1>
+
+<div type="button" class="btn btn-primary" @onclick="navegarahabs">
+	Acceso Habitaciones
+</div>
+
+
+
+@code {
+	[Inject]
+	private NavigationManager NavigationManager { get; set; }
+
+	private void navegarahabs()
+	{
+		NavigationManager.NavigateTo("/habitaciones");
+	}
+
+}
