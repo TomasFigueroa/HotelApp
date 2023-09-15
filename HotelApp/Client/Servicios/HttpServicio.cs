@@ -26,6 +26,19 @@ namespace HotelApp.Client.Servicios
             }
 
         }
+        public async Task<HttpRespuesta<object>> Post<T>(string url, T enviar)
+        {
+            var enviarJson = JsonSerializer.Serialize(enviar);
+            var enviarContent = new StringContent(enviarJson,
+                                Encoding.UTF8,
+                                "application/json");
+
+            var respuesta = await http.PostAsync(url, enviarContent);
+            return new HttpRespuesta<object>(null,
+                                            !respuesta.IsSuccessStatusCode,
+                                            respuesta);
+
+        }
 
         private async Task<T?> DesSerlizar<T>(HttpResponseMessage response)
         {
